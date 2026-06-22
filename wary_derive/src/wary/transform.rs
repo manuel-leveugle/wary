@@ -206,10 +206,10 @@ impl TransformField {
 		match &self.dive_async {
             DiveConfig::None => {}
             DiveConfig::Default => {
-				tokens.extend(quote! { #crate_name::AsyncTransform::transform_async(#field, ctx); });
+				tokens.extend(quote! { #crate_name::AsyncTransform::transform_async(#field, ctx).await; });
             }
             DiveConfig::Custom(custom_ctx) => {
-                tokens.extend(quote! { #crate_name::AsyncTransform::transform_async(#field, #custom_ctx); });
+                tokens.extend(quote! { #crate_name::AsyncTransform::transform_async(#field, #custom_ctx).await; });
             }
         }
 
